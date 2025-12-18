@@ -1,0 +1,19 @@
+ENTITé = les info plus important pour stuq dans base de donner
+ATTRUBUTS = les info d'entité
+RELATION = kfx ta mrtabtin
+CARDINALITé = 1-1: واحد مع واحد
+              1-N: واحد مع بزاف
+              N-N: بزاف مع بزاف
+              
+              
+MCD = رسم بالفكرة 
+    EXEMPLE : (utilis_rédige_article) 
+
+
+MLD = تحويل الرسم لجداول
+    EXemple :  UTILISATEUR (
+             id_user PK,
+             nom,
+             email,
+             mot_de_passe
+    )                                                                                      
