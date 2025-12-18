@@ -1,0 +1,27 @@
+1️⃣ Création de table
+
+CREATE TABLE → Permet de créer une nouvelle table dans la base de données.
+
+2️⃣ Définition des colonnes
+
+id INT → Crée une colonne id de type entier (INT).
+
+AUTO_INCREMENT → Permet à la colonne de s’incrémenter automatiquement à chaque nouvel enregistrement.
+
+PRIMARY KEY → Définit cette colonne comme clé primaire, c’est-à-dire unique et non nulle.
+
+VARCHAR(n) → Définit une colonne texte de longueur variable jusqu’à n caractères.
+
+TEXT → Définit une colonne pour du texte long.
+
+DATE → Définit une colonne pour stocker une date.
+
+NOT NULL → Indique que la colonne ne peut pas être vide.
+
+UNIQUE → Garantit que toutes les valeurs de cette colonne sont uniques dans la table.
+
+3️⃣ Clés étrangères
+
+FOREIGN KEY (colonne) → Définit une clé étrangère pour établir une relation avec une autre table.
+
+REFERENCES Table(colonne) → Indique la table et la colonne à laquelle la clé étrangère fait référence.
