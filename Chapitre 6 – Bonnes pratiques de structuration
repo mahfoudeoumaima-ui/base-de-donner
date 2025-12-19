@@ -1,0 +1,46 @@
+CREATE DATABASE IF NOT EXISTS BlogDB;
+USE BlogDB;
+
+-- Table Utilisateur
+CREATE TABLE IF NOT EXISTS utilisateur (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nom VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    mot_de_passe VARCHAR(255) NOT NULL,
+    date_inscription DATETIME DEFAULT CURRENT_TIMESTAMP
+) COMMENT='Table des utilisateurs du blog';
+
+-- Table Article
+CREATE TABLE IF NOT EXISTS article (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    titre VARCHAR(200) NOT NULL,
+    contenu TEXT NOT NULL,
+    date_pub DATETIME DEFAULT CURRENT_TIMESTAMP,
+    id_utilisateur INT NOT NULL,
+    FOREIGN KEY (id_utilisateur) REFERENCES utilisateur(id)
+) COMMENT='Table des articles du blog';
+
+-- Table Commentaire
+CREATE TABLE IF NOT EXISTS commentaire (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    contenu TEXT NOT NULL,
+    auteur VARCHAR(100) NOT NULL,
+    date_pub DATETIME DEFAULT CURRENT_TIMESTAMP,
+    id_article INT NOT NULL,
+    FOREIGN KEY (id_article) REFERENCES article(id)
+) COMMENT='Table des commentaires des articles';
+
+--  Ajouter un index sur l'email pour accélérer les recherches
+ALTER TABLE utilisateur ADD INDEX idx_email (email);
+
+--  Les commentaires des tables sont déjà ajoutés ci-dessus avec COMMENT
+
+--  Vérification de la normalisation
+-- ✔ Chaque colonne contient une seule valeur (pas de listes ou de données multiples dans une colonne)
+-- ✔ Les relations entre tables sont correctes (clé étrangère utilisée)
+
+--  Sauvegarder la structure finale
+--  Utiliser phpMyAdmin : Export > SQL
+--  Ou via terminal : 
+-- mysqldump -u root -p --no-data BlogDB > BlogDB_structure.sql
+
