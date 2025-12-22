@@ -1,0 +1,76 @@
+CREATE DATABASE IF NOT EXISTS realisation;
+USE realisation;
+
+CREATE TABLE IF NOT EXISTS medecin (
+    id_medecin INT AUTO_INCREMENT PRIMARY KEY,
+    nom VARCHAR(100) NOT NULL,
+    specialite VARCHAR(100),
+    telephone VARCHAR(20)
+);
+INSERT INTO medecin (nom, specialite, telephone) VALUES
+('Dr jamila', 'Cardiologie', '0600000008'),
+('Dr Sara', 'Dermatologie', '0600000007'),
+('Dr laila', 'Pédiatrie', '0600000009');
+
+CREATE TABLE IF NOT EXISTS patient (
+    id_patient INT AUTO_INCREMENT PRIMARY KEY,
+    nom VARCHAR(100) NOT NULL,
+    age INT,
+    telephone VARCHAR(20)
+);
+
+INSERT INTO patient (nom, age, telephone) VALUES
+('Amina', 25, '0700000001'),
+('Hassan', 40, '0700000002'),
+('Khadija', 30, '0700000003');
+
+CREATE TABLE IF NOT EXISTS rendez_vous (
+    id_rendez_vous INT AUTO_INCREMENT PRIMARY KEY,
+    date_rendez_vous DATE NOT NULL,
+    heure_rendez_vous TIME NOT NULL,
+    id_medecin INT NOT NULL,
+    id_patient INT NOT NULL,
+    FOREIGN KEY (id_medecin) REFERENCES medecin(id_medecin) ON DELETE CASCADE,
+    FOREIGN KEY (id_patient) REFERENCES patient(id_patient) ON DELETE CASCADE
+);
+
+INSERT INTO rendez_vous (date_rendez_vous, heure_rendez_vous, id_medecin, id_patient) VALUES
+('2025-01-10', '09:30:00', 1, 2),
+('2025-01-11', '10:00:00', 2, 1),
+('2025-01-12', '11:15:00', 3, 3);
+
+CREATE TABLE IF NOT EXISTS Department (
+    id_department INT AUTO_INCREMENT PRIMARY KEY,
+    nom VARCHAR(100) NOT NULL
+);
+
+INSERT INTO Department (nom) VALUES
+('Dev web'),
+('Dev Mobile'),
+('IT');
+
+CREATE TABLE IF NOT EXISTS Employee (
+    id_employee INT AUTO_INCREMENT PRIMARY KEY,
+    nom VARCHAR(50) NOT NULL,
+    prenom VARCHAR(50) NOT NULL,
+    salaire DECIMAL(10,2) NOT NULL,
+    id_department INT NOT NULL,
+    FOREIGN KEY (id_department) REFERENCES Department(id_department) ON DELETE CASCADE
+);
+
+INSERT INTO Employee (nom, prenom, salaire, id_department) VALUES
+('Soukayna', 'Assila', 5000.00, 3),
+('Sara', 'Alaoui', 4500.00, 2),
+('Taha', 'Mahir', 4000.00, 1);
+
+CREATE TABLE IF NOT EXISTS Project (
+    id_project INT AUTO_INCREMENT PRIMARY KEY,
+    nom VARCHAR(100) NOT NULL,
+    id_employee INT NOT NULL,
+    FOREIGN KEY (id_employee) REFERENCES Employee(id_employee) ON DELETE CASCADE
+);
+
+INSERT INTO Project (nom, id_employee) VALUES
+('Website Redesign', 1),
+('App Mobile', 3),
+('Website with js', 2);
