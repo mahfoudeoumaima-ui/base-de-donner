@@ -1,0 +1,9 @@
+Entités :
+        Médecin
+        Patient
+        Rendez-vou
+
+Relations
+
+        Un médecin assure plusieurs rendez-vous (1,N)
+        Un patient prend plusieurs rendez-vous (1,N)

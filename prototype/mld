@@ -1,0 +1,18 @@
+Médecin
+id_medecin (clé primaire)
+nom
+specialite
+telephone
+
+Patient
+id_patient (clé primaire)
+nom
+age
+telephone
+
+Rendez_vous
+id_rdv (clé primaire)
+date_rdv
+heure_rdv
+id_medecin (clé étrangère)
+id_patient (clé étrangère)
