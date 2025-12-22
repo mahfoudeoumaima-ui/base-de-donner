@@ -1,21 +1,22 @@
-create table médecin (
-    id_medecin int auto_increment primary KEY,
-    nom varchar(100) not null,
-    specialite varchar(100),
+use prototype;
+CREATE TABLE medecin (
+    id_medecin INT AUTO_INCREMENT PRIMARY KEY,
+    nom VARCHAR(100) NOT NULL,
+    specialite VARCHAR(100),
+    telephone VARCHAR(20)
+);
+CREATE TABLE patient (
+    id_patient int AUTO_INCREMENT PRIMARY KEY,
+    nom varchar(10) not null,
+    age int ,
     telephone varchar(20)
 );
-create table patient(
-    id_patient int auto_increment primary KEY,
-    nom varchar (100) not null,
-    age int,
-    telephone varchar(20)
-);
-create table rendez_vous(
-    id_rendez_vous auto_increment primary KEY,
-    date_rendez_vous date not null,
+CREATE TABLE rendez_vous(
+    id_rendez_vous int AUTO_INCREMENT PRIMARY KEY,
+    date_rendez_vous date not null ,
     heure_rendez_vous time not null,
-    id_medecin int not null,
+    id_medcin int not null,
     id_patient int not null,
-    FOREIGN KEY (id_medecin) references medecin(id_medecin),
-    FOREIGN KEY (id_patient) references patient(id_patient),
+    FOREIGN KEY (id_medecin) REFERENCES medecin(id_medecin),
+    FOREIGN KEY (id_patient) REFERENCES patient(id_patient)
 );
